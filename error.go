@@ -120,6 +120,10 @@ func (p *errorProxy) Qc(k string) ProxySet {
 	return p
 }
 
+func (p *errorProxy) Unmarshal(v interface{}) error {
+	return p
+}
+
 func (p *errorProxy) parentFrame() frame {
 	return p.parent
 }

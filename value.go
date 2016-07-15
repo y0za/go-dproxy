@@ -1,6 +1,9 @@
 package dproxy
 
-import "strconv"
+import (
+	"encoding/json"
+	"strconv"
+)
 
 type valueProxy struct {
 	value  interface{}
@@ -139,6 +142,15 @@ func (p *valueProxy) Q(k string) ProxySet {
 		parent: p,
 		label:  ".." + k,
 	}
+}
+
+func (p *valueProxy) Unmarshal(v interface{}) error {
+	b, err := json.Marshal(p.value)
+	if err != nil {
+		return nil
+	}
+
+	return json.Unmarshal(b, v)
 }
 
 func (p *valueProxy) parentFrame() frame {

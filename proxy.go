@@ -35,6 +35,9 @@ type Proxy interface {
 	// Q returns set of all items which property matchs with k.
 	Q(k string) ProxySet
 
+	// Unmarshal stores parsed data in v.
+	Unmarshal(v interface{}) error
+
 	// Proxy implements frame.
 	frame
 }
